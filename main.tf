@@ -70,8 +70,9 @@ provider "snowflake" {
      privilege         = "SELECT"
      roles             = [snowflake_role.role.name]
      with_grant_option = false
-     on_future         = true
  }
+
+
 
   resource "snowflake_warehouse_grant" "grant" {
      provider          = snowflake.security_admin
