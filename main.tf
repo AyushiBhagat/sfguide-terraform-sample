@@ -57,9 +57,8 @@ provider "snowflake" {
  resource "snowflake_schema_grant" "grant" {
      provider          = snowflake.security_admin
      database_name     = snowflake_database.db.name
-     enable_multiple_grants= true
      schema_name       = snowflake_schema.schema.name
-     privilege         = "USAGE,CREATE TASK"
+     privilege         = "USAGE"
      roles             = [snowflake_role.role.name]
      with_grant_option = false
  }
@@ -67,9 +66,8 @@ provider "snowflake" {
  resource "snowflake_table_grant" "grant" {
      provider          = snowflake.security_admin
      database_name     = snowflake_database.db.name
-     enable_multiple_grants = true
      schema_name       = snowflake_schema.schema.name
-     privilege         = "SELECT,INSERT"
+     privilege         = "SELECT"
      roles             = [snowflake_role.role.name]
      with_grant_option = false
      on_future         = true
