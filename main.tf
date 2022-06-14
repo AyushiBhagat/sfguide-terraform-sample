@@ -73,6 +73,17 @@ provider "snowflake" {
      on_future      = true
  }
 
+ resource "snowflake_table_grant" "grant" {
+     for_each          = local.schema_tables
+     provider          = snowflake.security_admin
+     database_name     = snowflake_database.db.name
+     schema_name       = snowflake_schema.schema.name
+     privilege         = "SELECT"
+     roles             = [snowflake_role.role.name]
+     with_grant_option = false
+     on_future      = true
+ }
+
 
 
   resource "snowflake_warehouse_grant" "grant" {
