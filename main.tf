@@ -65,13 +65,12 @@ provider "snowflake" {
 
  resource "snowflake_table_grant" "grant" {
      provider          = snowflake.security_admin
-     for_each          = local.schema_tables
+     on_existing       = true 
      database_name     = snowflake_database.db.name
      schema_name       = snowflake_schema.schema.name
      privilege         = "SELECT"
      roles             = [snowflake_role.role.name]
      with_grant_option = false
-     on_future      = true
  }
 
 
