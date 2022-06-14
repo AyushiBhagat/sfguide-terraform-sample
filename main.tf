@@ -82,7 +82,8 @@ provider "snowflake" {
  }
 
  resource "snowflake_role" "other_role" {
-   name = "terraform_test_rl"
+  provider = snowflake.security_admin 
+  name = "terraform_test_rl"
 }
 
  resource "snowflake_role_grants" "grants" {
