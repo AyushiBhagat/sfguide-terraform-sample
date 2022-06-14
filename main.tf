@@ -83,8 +83,8 @@ provider "snowflake" {
      with_grant_option = false
  }
 
-resource "snowflake_role" "other_role" {
-  name = "terraform_test_rl""
+ resource "snowflake_role" "other_role" {
+   name = "terraform_test_rl"
 }
 
  resource "snowflake_role_grants" "grants" {
