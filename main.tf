@@ -70,6 +70,7 @@ provider "snowflake" {
      privilege         = "SELECT"
      roles             = [snowflake_role.role.name]
      with_grant_option = false
+     on_future      = true
  }
 
 
