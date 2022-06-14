@@ -57,22 +57,22 @@ provider "snowflake" {
  resource "snowflake_schema_grant" "grant" {
      provider          = snowflake.security_admin
      database_name     = snowflake_database.db.name
+     enable_multiple_grants= true
      schema_name       = snowflake_schema.schema.name
      privilege         = "USAGE,CREATE TASK"
      roles             = [snowflake_role.role.name]
      with_grant_option = false
-     enable_multiple_grants= true
  }
 
  resource "snowflake_table_grant" "grant" {
      provider          = snowflake.security_admin
      database_name     = snowflake_database.db.name
+     enable_multiple_grants = true
      schema_name       = snowflake_schema.schema.name
      privilege         = "SELECT,INSERT"
      roles             = [snowflake_role.role.name]
      with_grant_option = false
      on_future         = true
-     enable_multiple_grants= true
  }
 
   resource "snowflake_warehouse_grant" "grant" {
@@ -83,11 +83,12 @@ provider "snowflake" {
      with_grant_option = false
  }
 
-
-
+resource "snowflake_role" "other_role" {
+  name = "terraform_test_rl""
+}
 
  resource "snowflake_role_grants" "grants" {
      provider  = snowflake.security_admin
      role_name = snowflake_role.role.name
-     roles     = "terraform_test_rl"
+     roles     = ["${snowflake_role.other_role.name}"]
  }
