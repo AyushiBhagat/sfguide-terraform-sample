@@ -58,18 +58,10 @@ provider "snowflake" {
      provider          = snowflake.security_admin
      database_name     = snowflake_database.db.name
      schema_name       = snowflake_schema.schema.name
-     privilege         = "USAGE"
+     privilege         = "USAGE,CREATE TASK"
      roles             = [snowflake_role.role.name]
      with_grant_option = false
- }
-
- resource "snowflake_schema_grant" "grant" {
-     provider          = snowflake.security_admin
-     database_name     = snowflake_database.db.name
-     schema_name       = snowflake_schema.schema.name
-     privilege         = "CREATE TASK"
-     roles             = [snowflake_role.role.name]
-     with_grant_option = false
+     enable_multiple_grants= true
  }
 
  resource "snowflake_table_grant" "grant" {
