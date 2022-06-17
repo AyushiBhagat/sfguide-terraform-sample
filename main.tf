@@ -65,7 +65,7 @@ provider "snowflake" {
 
  resource "snowflake_table_grant" "grant" {
      provider          = snowflake.security_admin
-     on_existing       = true 
+     on_future         = true 
      database_name     = snowflake_database.db.name
      schema_name       = snowflake_schema.schema.name
      privilege         = "SELECT"
