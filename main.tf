@@ -92,3 +92,7 @@ provider "snowflake" {
      role_name = snowflake_role.role.name
      roles     = ["${snowflake_role.other_role.name}"]
  }
+
+data "snowflake_users" "current" {
+    pattern = "ayushi"
+}
