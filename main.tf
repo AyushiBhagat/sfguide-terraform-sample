@@ -99,5 +99,3 @@ data "snowflake_users" "current" {
     provider = snowflake.security_admin
     pattern = "AYUSHI"
 }
-
-terraform import snowflake_user.snowflake ayushi
