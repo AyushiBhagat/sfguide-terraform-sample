@@ -97,5 +97,5 @@ provider "snowflake" {
 
 data "snowflake_users" "current" {
     provider = snowflake.security_admin
-    pattern = '%%'
+    pattern = %%
 }
